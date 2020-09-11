@@ -1,0 +1,25 @@
+<div class="container">
+  <h1 [textContent]="campaignName"> </h1>
+  <h3>Total Raised: $ {{ totalRaised }}</h3>
+
+  <p class="goal">Goal: $ <span [textContent]="donationSum"></span></p>
+  <app-progress-bar
+    [newDonation]="newDonation"
+    [expected]="donationSum"
+    [totalRaised]="totalRaised"
+    [donationsStorage]="donationsStorage"
+  ></app-progress-bar>
+
+  <app-tree-map
+    [newDonation]="newDonation"
+    [expected]="donationSum"
+    [totalRaised]="totalRaised"
+    [donationsHistory]="getJSON()"
+    [backgroundUrl]="backgroundUrl"
+  >
+  </app-tree-map>
+
+  <app-add-donation
+    (donationAdded)="onDonationAdded($event)"
+  ></app-add-donation>
+</div>

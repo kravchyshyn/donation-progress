@@ -1,0 +1,46 @@
+<div class="container">
+  <form class="card" [formGroup]="form" (ngSubmit)="submit()">
+    <h1 class="title"> Сreate new donation campaign </h1>
+
+    <div class="form-control">
+      <mat-form-field class="full-width">
+        <mat-label>Campaign name: </mat-label>
+        <input matInput class="campaign-name" placeholder="Donation campaign name" formControlName="campaign" />
+      </mat-form-field>
+      <div
+        *ngIf="form.get('campaign').invalid && form.get('campaign').touched"
+        class="validation"
+      >
+        <small *ngIf="form.get('campaign').errors.required">
+          Please add campaign name
+        </small>
+      </div>
+    </div>
+
+    <div class="form-control">
+      <mat-form-field class="full-width">
+        <mat-label>Expected donation sum: $</mat-label>
+        <input matInput class="expected-donation-value" placeholder="Expected donation value" formControlName="donation" />
+      </mat-form-field>
+        <div
+        *ngIf="form.get('donation').invalid && form.get('donation').touched"
+        class="validation"
+      >
+        <small *ngIf="form.get('donation').errors.required">
+          Please add expected donation sum
+        </small>
+      </div>
+    </div>
+
+    <div class="form-control">
+      <mat-form-field class="full-width">
+        <mat-label>Please add campaign background url: </mat-label>
+        <input matInput class="background-url" placeholder="Background url" formControlName="backgroundUrl" />
+      </mat-form-field>
+    </div>
+
+    <button class="btn" mat-raised-button color="primary" type="submit" [disabled]="form.invalid || form.pending">Start campaign</button>
+  </form>
+</div>
+
+

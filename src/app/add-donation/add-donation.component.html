@@ -1,0 +1,38 @@
+<div class="container">
+<form class="donation-form" [formGroup]="form" (ngSubmit)="submit()">
+  <h2 class="title"> Quick donation</h2>
+
+  <div class="form-control">
+    <mat-form-field class="full-width">
+      <mat-label>Please enter your name: </mat-label>
+      <input matInput class="person" placeholder="Person" formControlName="person" />
+    </mat-form-field>
+    <div
+      *ngIf="form.get('person').invalid && form.get('person').touched"
+      class="validation"
+    >
+      <small *ngIf="form.get('person').errors.required">
+       Please add your name
+      </small>
+    </div>
+  </div>
+
+  <div class="form-control">
+    <mat-form-field class="full-width">
+      <mat-label>Enter donation sum: $</mat-label>
+      <input matInput type='number' class="new-donation-value" placeholder="donation" formControlName="newDonation" />
+    </mat-form-field>
+    <div
+      *ngIf="form.get('newDonation').invalid && form.get('newDonation').touched"
+      class="validation"
+    >
+      <small *ngIf="form.get('newDonation').errors.required">
+        Please add new donation sum
+      </small>
+    </div>
+  </div>
+
+  <button class="btn" mat-raised-button color="primary" type="submit"  type="submit" [disabled]="form.invalid || form.pending">Send donation</button>
+</form>
+</div>
+
