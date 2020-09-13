@@ -34,10 +34,6 @@ export class TreeMapComponent implements OnInit, OnChanges {
     this.animateTreeMap();
   }
 
-  formatMoney(num) {
-    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
-  }
-
   renderTreeMap() {
     if (this.treeMapDiv) {
       d3.select('div.tree').html('');
@@ -59,25 +55,6 @@ export class TreeMapComponent implements OnInit, OnChanges {
     const root = d3.hierarchy(JSON.parse(this.donationsHistory), (d: any) => d.children)
       .sum((d: any) => d.donation);
     const tree = treeMap(root);
-    // const tool = d3.select( 'body').append('div').attr('class', 'toolTip');
-
-    // const mousemove = function(d) {
-    //   const xPosition = d3.event.pageX + 5;
-    //   const yPosition = d3.event.pageY + 5;
-    //
-    //   d3.select('#tooltip')
-    //     .style('left', xPosition + 'px')
-    //     .style('top', yPosition + 'px');
-    //   // d3.select('#tooltip #heading')
-    //   //   .text(JSON.stringify(d));
-    //   d3.select('#tooltip #revenue')
-    //     .text('£' + d['donation'].toFixed(0));
-    //   d3.select('#tooltip').classed('hidden', false);
-    // };
-    //
-    const mouseout = function() {
-      d3.select('#tooltip').classed('hidden', true);
-    };
 
     const nodes = this.treeMapDiv.datum(root).selectAll('.node')
       .data(tree.leaves())
@@ -95,27 +72,19 @@ export class TreeMapComponent implements OnInit, OnChanges {
             .style('left', event.pageX + 'px')
             .style('top', event.pageY + 'px');
 
-        d3.select('#tooltip #percentage')
+        d3.select('#tooltip #person')
           .text(d.data.person)
-          d3.select('#tooltip #revenue')
+          d3.select('#tooltip #donation')
             .text('$' + d.data['donation'])
           d3.select('#tooltip').classed('hidden', false);
         })
-      .on('mouseout', mouseout)
-      .text((d: any) => d.data.person)
-      ;
+      .on('mouseout', function() {
+        d3.select('#tooltip').classed('hidden', true);
+      })
+      .text((d: any) => '$ ' + d.data.donation);
 
       nodes
         .transition()
         .duration(this.options.duration);
-      // .
-      // on('mousemove', function (d: any) {
-      //   tool.style('left', d3.event.pageX + 10 + 'px');
-      //   tool.style('top', d3.event.pageY - 20 + 'px');
-      //   tool.style('display', 'inline-block');
-      //   tool.html(d.children ? null : d.name + '<br>' + ' $ ' + this.formatMoney(Math.round(d.donation * 1000)));
-      // }.bind(this)).on('mouseout', function (d: any) {
-      // tool.style('display', 'none');
-      // });
   }
 }

@@ -1,7 +1,6 @@
+<h1 class="campaign-title" [textContent]="campaignName"> </h1>
 <div class="container">
-  <h1 [textContent]="campaignName"> </h1>
-  <h3>Total Raised: $ {{ totalRaised }}</h3>
-
+  <h3 class="total-raised">Total Raised: $ {{ totalRaised }}</h3>
   <p class="goal">Goal: $ <span [textContent]="donationSum"></span></p>
   <app-progress-bar
     [newDonation]="newDonation"

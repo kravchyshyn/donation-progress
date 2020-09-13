@@ -1,10 +1,14 @@
+h1.campaign-title {
+  text-align: center;
+  padding: 20px;
+  margin-top: 0;
+  background: #353535;
+  color: white;
+}
+
 .container {
   width: 600px;
   margin: 0 auto;
-
-  h1 {
-    text-align: center;
-  }
 
   p.goal {
     font-size: 1rem;
