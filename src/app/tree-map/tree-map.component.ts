@@ -51,7 +51,9 @@ export class TreeMapComponent implements OnInit, OnChanges {
   }
 
   animateTreeMap() {
-    const treeMap = d3.treemap().size([this.options.width, this.options.height]);
+    const treeMap = d3.treemap()
+      .size([this.options.width, this.options.height])
+    ;
     const root = d3.hierarchy(JSON.parse(this.donationsHistory), (d: any) => d.children)
       .sum((d: any) => d.donation);
     const tree = treeMap(root);
@@ -73,9 +75,9 @@ export class TreeMapComponent implements OnInit, OnChanges {
             .style('top', event.pageY + 'px');
 
         d3.select('#tooltip #person')
-          .text(d.data.person)
+          .text(d.data.person);
           d3.select('#tooltip #donation')
-            .text('$' + d.data['donation'])
+            .text('$' + d.data['donation']);
           d3.select('#tooltip').classed('hidden', false);
         })
       .on('mouseout', function() {

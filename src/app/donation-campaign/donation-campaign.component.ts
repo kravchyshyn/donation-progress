@@ -54,7 +54,7 @@ export class DonationCampaignComponent implements OnInit {
           campaignName: 'free-place',
           color: 'rgba(255,255,255, 0.9)',
           children: [{
-            person: 'freePlace',
+            person: 'Still Needed',
             donation: donationsNeed
           }]
         }
