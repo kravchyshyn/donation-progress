@@ -1,4 +1,6 @@
-# Donation
+# Donation progress page
+
+This is test task. The main goal is to create page for donation campaign on which users can donate money. It have to be displayed as a wall and when somebody donate some money new part is added to it.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.9.
 
